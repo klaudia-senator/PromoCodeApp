@@ -6,18 +6,21 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "PROMO_CODES")
 public class PromoCode {
     @Id
+    @Column(name = "CODE")
     private String code;
-    @Column(nullable = false)
+    @Column(name = "EXPIRATION_DATE", nullable = false)
     private LocalDate expirationDate;
-    @Column(nullable = false)
+    @Column(name = "DISCOUNT", nullable = false)
     private BigDecimal discount;
-    @Column(nullable = false)
+    @Column(name = "CURRENCY", nullable = false)
     private String currency;
-    @Column(nullable = false)
+    @Column(name = "MAX_USAGE", nullable = false)
     private Integer maxUsage;
-    private Integer usages = 0;
+    @Column(name = "USAGE")
+    private Integer usage = 0;
 
     public String getCode() {
         return code;
@@ -57,5 +60,13 @@ public class PromoCode {
 
     public void setMaxUsage(Integer maxUsage) {
         this.maxUsage = maxUsage;
+    }
+
+    public Integer getUsage() {
+        return usage;
+    }
+
+    public void setUsage(Integer usage) {
+        this.usage = usage;
     }
 }

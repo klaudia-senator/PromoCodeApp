@@ -17,6 +17,14 @@ public class Product {
     @Column(nullable = false)
     private String currency;
 
+
+    public Product(BigDecimal price) {
+    }
+
+    public Product() {
+
+    }
+
     public long getId() {
         return id;
     }
