@@ -15,7 +15,7 @@ PromoCode Application is an application for managing promotional codes and produ
 
 1. **Clone the repository**:
     ```bash
-    git clone <REPOSITORY_URL>
+    git clone REPOSITORY_URL](https://github.com/klaudia-senator/PromoCodeApp.git
     ```
 2. **Navigate to the project directory**:
     ```bash
