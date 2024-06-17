@@ -34,6 +34,7 @@ The application will be available at `http://localhost:9090`.
 
 ## API Endpoints
 - **1.Add a product**:
+    ```http
     POST /products
     Content-Type: application/json
     {
@@ -42,12 +43,14 @@ The application will be available at `http://localhost:9090`.
         "price": 100.00,
         "currency": "USD"
     }
-  
+  ```
 - **2.List all products**:
+    ```http
     GET /products
-  
+  ```
 - **3.Update a product**:
-    PUT /products/{id}
+    ```http
+    **PUT /products/{id}
     Content-Type: application/json
     {
         "name": "Updated Product Name",
@@ -55,8 +58,9 @@ The application will be available at `http://localhost:9090`.
         "price": 150.00,
         "currency": "USD"
     }
-  
+  ```
 - **4.Add a promo code**:
+    ```http
     POST /promocodes
     Content-Type: application/json
 
@@ -67,17 +71,21 @@ The application will be available at `http://localhost:9090`.
         "currency": "USD",
         "maxUsage": 100
     }
-    
+    ```
 - **5.List all promo codes**:
+    ```http
     GET /promocodes
-  
+  ```
 - **6.Get promo code details**:
+    ```http
     GET /promocodes/{code}
-
+```
 - **7.Calculate discounted price**:
+    ```http
     GET /promocodes/discount?price={price}&code={code}
-    
+    ```
 - **8.Simulate a purchase**:
+    ```http
     POST /purchases/simulate
     Content-Type: application/json
     Query params:
@@ -85,7 +93,7 @@ The application will be available at `http://localhost:9090`.
         "productId": 1,
         "promoCode": "PROMO123"
     }
-
+```
 ## Author
 
 Klaudia Senator
