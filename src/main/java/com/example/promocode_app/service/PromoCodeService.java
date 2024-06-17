@@ -20,7 +20,19 @@ public class PromoCodeService {
         this.promoCodeRepository = promoCodeRepository;
     }
     public PromoCode save(PromoCode promoCode) {
-        return promoCodeRepository.save(promoCode);
+        validatePromoCode(promoCode);
+        if (promoCodeRepository.existsById(promoCode.getCode())) {
+            throw new IllegalArgumentException("Promo code with this code already exists: " + promoCode.getCode());
+        }
+        return promoCodeRepository.save(promoCode); }
+    private void validatePromoCode(PromoCode promoCode) {
+        String code = promoCode.getCode();
+        if (code.length() < 3 || code.length() > 24) {
+            throw new IllegalArgumentException("Promo code must be between 3 and 24 characters long.");
+        }
+        if (!code.matches("^[a-zA-Z0-9]+$")) {
+            throw new IllegalArgumentException("Promo code must be alphanumeric and cannot contain spaces or special characters.");
+        }
     }
     public List<PromoCode> findAll() {
         return promoCodeRepository.findAll();

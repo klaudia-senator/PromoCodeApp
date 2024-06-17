@@ -21,8 +21,12 @@ public class PromoCodeController {
     }
     @PostMapping
     public ResponseEntity<PromoCode> createPromoCode(@RequestBody PromoCode promoCode) {
-        PromoCode createdPromoCode = promoCodeService.save(promoCode);
-        return ResponseEntity.ok(createdPromoCode);
+        try {
+            PromoCode createdPromoCode = promoCodeService.save(promoCode);
+            return ResponseEntity.ok(createdPromoCode);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
     @GetMapping
     public ResponseEntity<List<PromoCode>> getAllPromoCodes() {
