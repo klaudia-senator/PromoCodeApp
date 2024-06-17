@@ -21,10 +21,8 @@ public class PromoCodeService {
     }
     public PromoCode save(PromoCode promoCode) {
         validatePromoCode(promoCode);
-        if (promoCodeRepository.existsById(promoCode.getCode())) {
-            throw new IllegalArgumentException("Promo code with this code already exists: " + promoCode.getCode());
-        }
         return promoCodeRepository.save(promoCode); }
+
     private void validatePromoCode(PromoCode promoCode) {
         String code = promoCode.getCode();
         if (code.length() < 3 || code.length() > 24) {
