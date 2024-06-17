@@ -39,14 +39,13 @@ public class PromoCodeController {
     public ResponseEntity<BigDecimal> calculateDiscount(@RequestParam("price") BigDecimal price,
                                                         @RequestParam("code") String code) {
         try {
-            Product product = new Product(price);
-
             Optional<PromoCode> promoCodeOptional = promoCodeService.findById(code);
             if (!promoCodeOptional.isPresent()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(BigDecimal.ZERO);
             }
             PromoCode promoCode = promoCodeOptional.get();
-            return promoCodeService.getDiscountPrice(product, promoCode);
+            BigDecimal discountPrice = promoCodeService.calculateDiscount(price, promoCode);
+            return ResponseEntity.ok(discountPrice);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(BigDecimal.ZERO);
         }

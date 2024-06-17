@@ -61,6 +61,7 @@ public class PurchaseService {
 
         Purchase purchase = new Purchase();
         purchase.setProduct(product);
+        purchase.setPromoCode(promoCode);
         purchase.setDateOfPurchase(LocalDate.now());
         purchase.setRegularPrice(regularPrice);
         purchase.setDiscount(discountApplied);
