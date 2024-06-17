@@ -50,7 +50,7 @@ The application will be available at `http://localhost:9090`.
   ```
 - **3.Update a product**:
     ```http
-    **PUT /products/{id}
+    PUT /products/{id}
     Content-Type: application/json
     {
         "name": "Updated Product Name",
@@ -79,7 +79,7 @@ The application will be available at `http://localhost:9090`.
 - **6.Get promo code details**:
     ```http
     GET /promocodes/{code}
-```
+    ```
 - **7.Calculate discounted price**:
     ```http
     GET /promocodes/discount?price={price}&code={code}
@@ -93,7 +93,7 @@ The application will be available at `http://localhost:9090`.
         "productId": 1,
         "promoCode": "PROMO123"
     }
-```
+    ```
 ## Author
 
 Klaudia Senator
