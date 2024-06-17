@@ -31,6 +31,9 @@ public class PurchaseService {
     public List<Purchase> findAll() {
         return purchaseRepository.findAll();
     }
+    public Purchase findById(Long id) {
+        Optional<Purchase> purchase = purchaseRepository.findById(id);
+        return purchase.orElse(null); }
 
     public ResponseEntity<Purchase> simulatePurchase(Long productId, String promoCodeId) {
         Optional<Product> productOpt = productService.findById(productId);
@@ -43,19 +46,16 @@ public class PurchaseService {
         Product product = productOpt.get();
         PromoCode promoCode = promoCodeOpt.get();
 
-        // Sprawdź warunki do zastosowania kodu promocyjnego
         if (promoCode.getExpirationDate().isBefore(LocalDate.now()) ||
                 !promoCode.getCurrency().equals(product.getCurrency()) ||
                 promoCode.getUsage() >= promoCode.getMaxUsage()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
-        // Oblicz zniżkę
         BigDecimal regularPrice = product.getPrice();
         BigDecimal discountApplied = promoCode.getDiscount();
         BigDecimal finalPrice = regularPrice.subtract(discountApplied);
 
-        // Zaktualizuj liczbę użyć kodu promocyjnego
         promoCode.setUsage(promoCode.getUsage() + 1);
         promoCodeService.save(promoCode);
 

@@ -24,9 +24,18 @@ public class PurchaseController {
         List<Purchase> purchases = purchaseService.findAll();
         return ResponseEntity.ok(purchases);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Purchase> getPurchaseById(@PathVariable Long id) {
+        Purchase purchase = purchaseService.findById(id);
+        if (purchase == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(purchase);
+    }
     @PostMapping("/simulate")
-    public ResponseEntity<ResponseEntity<Purchase>> simulatePurchase(@RequestParam Long productId, @RequestParam(required = false) String promoCode) {
-        return ResponseEntity.ok(purchaseService.simulatePurchase(productId, promoCode));
+    public ResponseEntity<Purchase> simulatePurchase(@RequestParam Long productId, @RequestParam(required = false) String promoCode) {
+        ResponseEntity<Purchase> response = purchaseService.simulatePurchase(productId, promoCode);
+        return response;
     }
 }
 
